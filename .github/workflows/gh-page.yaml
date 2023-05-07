@@ -24,7 +24,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          export BASE_PATH="/${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}" \
+          && npm run build
 
       - name: Upload page artifacts
         uses: actions/upload-pages-artifact@v1 # This action is specific to github pages
